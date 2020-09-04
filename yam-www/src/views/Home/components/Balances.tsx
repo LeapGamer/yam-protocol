@@ -21,21 +21,6 @@ import { bnToDec } from '../../../utils'
 import { getV2Supply } from '../../../yamUtils'
 
 const Balances: React.FC = () => {
-  const [totalSupply, setTotalSupply] = useState<number>()
-  const v2Balance = useTokenBalance(yamV2Address)
-  const yam = useYam()
-  const { account } = useWallet()
-
-  useEffect(() => {
-    async function fetchTotalSupply () {
-      const supply = await getV2Supply(yam)
-      setTotalSupply(bnToDec(supply, 24))
-    }
-    if (yam) {
-      fetchTotalSupply()
-    }
-  }, [yam, setTotalSupply])
-
   return (
     <StyledWrapper>
       <Card>
@@ -45,28 +30,44 @@ const Balances: React.FC = () => {
               <YamIcon />
               <Spacer />
               <div style={{ flex: 1 }}>
-                <Value value={!!account ? numeral(bnToDec(v2Balance, 24)).format('0.00a') : '--'} />
-                <Label text="YAMV2 Balance" />
+                <Value value='2240%' />
+                <Label text="APY" />
               </div>
+              <Spacer />
+              <div style={{ flex: 1 }}>
+                <Value value='4.47%' />
+                <Label text="daily ROI" />
+              </div>
+              <Spacer />
+              <div style={{ flex: 1 }}>
+                <Value value='0.43' />
+                <Label text="SUSHI/hr/$1k" />
+              </div>  
+              <Spacer />
+              <div style={{ flex: 1 }}>
+                <Value value='15%' />
+                <Label text="imperm. loss" />
+              </div>
+              <Spacer />
+              <div style={{ flex: 1 }}>
+                <Value value='98%' />
+                <Label text="of Uniswap" />
+              </div>
+              
+              
             </StyledBalance>
           </StyledBalances>
         </CardContent>
-      </Card>
-      <Spacer />
-      <Card>
-        <CardContent>
-          <Value value={totalSupply ? totalSupply.toLocaleString() : '--'} />
-          <Label text="Total supply" />
-        </CardContent>
-      </Card>
+      </Card> 
     </StyledWrapper>
+    
   )
 }
 
 const StyledWrapper = styled.div`
   align-items: center;
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     width: 100%;
     flex-flow: column nowrap;
     align-items: stretch;

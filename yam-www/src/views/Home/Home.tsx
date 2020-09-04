@@ -11,24 +11,25 @@ import Spacer from '../../components/Spacer'
 
 import Balances from './components/Balances'
 
+import PoolRows from './components/PoolRows'
+
 const Home: React.FC = () => {
   return (
     <Page>
       <PageHeader
-        icon="🗣"
-        subtitle="Vote on the future of the YAM protocol."
-        title="YAMV2 governance is live."
+        icon="鮨"
+        subtitle="Let's roll"
+        title="Serving Up 73.5% of Uniswap"
       />
       <Container>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
         }}>
-          <Button href="https://snapshot.page/#/yam" text="View Proposals" />
-          <Spacer />
-          <Button href="https://forum.yam.finance" text="Governance Forum" />
+         
         </div>
-        <Spacer size="lg" />
+
+        <Spacer size="sm" />
         <Balances />
       </Container>
       <Spacer size="lg" />
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
         }}>
           <Button
             size="sm"
-            text="View V1 Farms"
+            text="View Contract Information"
             to="/farms"
             variant="secondary"
            />
@@ -46,10 +47,11 @@ const Home: React.FC = () => {
   )
 }
 
+
 const StyledOverview = styled.div`
   align-items: center;
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     width: 100%;
     flex-flow: column nowrap;
     align-items: stretch;

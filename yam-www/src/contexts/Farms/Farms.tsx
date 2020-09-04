@@ -13,39 +13,48 @@ import Context from './context'
 import { Farm } from './types'
 
 const NAME_FOR_POOL: { [key: string]: string } = {
-  yfi_pool: 'YFI Farm',
-  eth_pool: 'Weth Homestead',
-  ampl_pool: 'Ample Soils',
-  ycrv_pool: 'Eternal Lands',
-  comp_pool: 'Compounding Hills',
-  link_pool: 'Marine Gardens',
-  lend_pool: 'Aave Agriculture',
-  snx_pool: 'Spartan Grounds',
-  mkr_pool: 'Maker Range',
+  sushi_pool: 'Sushi Party!',
+  usdt_pool: 'Tether Turtle',
+  usdc_pool: 'Circle Snail',
+  dai_pool: 'Donald DAI',
+  susd_pool: 'Spartan Dollar',
+  uma_pool: 'Umami Squid',
+  band_pool: 'Band-osaurus',
+  ampl_pool: 'Ample Chicks',
+  comp_pool: 'Compound Truffle',
+  lend_pool: 'Aave Boar',
+  snx_pool: 'Synthetic Snake',
+  yfi_pool: 'YFI Whale',
 }
 
 const ICON_FOR_POOL: { [key: string]: string } = {
+  sushi_pool: '🍣',
+  usdt_pool: '🐢',
+  usdc_pool: '🐌',
+  dai_pool: '🦆',
+  susd_pool: '🦍',
+  uma_pool: '🦑',
+  band_pool: '🦖',
+  ampl_pool: '🐥',
+  comp_pool: '🍄',
+  lend_pool: '🐗',
+  snx_pool: '🐍',
   yfi_pool: '🐋',
-  eth_pool: '🌎',
-  ampl_pool: '🌷',
-  comp_pool: '💸',
-  link_pool: '🔗',
-  lend_pool: '🏕️',
-  snx_pool: '⚔️',
-  mkr_pool: '🐮',
-  ycrv_pool: '🌈',
 }
 
 const SORT_FOR_POOL: { [key: string]: number } = {
-  yfi_pool: 0,
-  eth_pool: 1,
-  ampl_pool: 2,
-  comp_pool: 3,
-  ycrv_pool: 4,
-  link_pool: 5,
-  lend_pool: 6,
-  snx_pool: 7,
-  mkr_pool: 8,
+  sushi_pool: 0,
+  usdt_pool: 1,
+  usdc_pool: 2,
+  dai_pool: 3,
+  susd_pool: 4,
+  uma_pool: 5,
+  band_pool: 6,
+  ampl_pool: 7,
+  comp_pool: 8,
+  lend_pool: 9,
+  snx_pool: 10,
+  yfi_pool:  11,
 }
 
 const Farms: React.FC = ({ children }) => {
@@ -65,28 +74,20 @@ const Farms: React.FC = ({ children }) => {
       const poolKey = poolKeys[i]
       const pool = pools[poolKey]
       let tokenKey = poolKey.replace('_pool', '')
-      if (tokenKey === 'eth') {
-        tokenKey = 'weth'
-      } else if (tokenKey === 'ampl') {
-        tokenKey = 'ampl_eth_uni_lp'
-      } else if (tokenKey === 'ycrv') {
-        tokenKey = 'ycrv_yam_uni_lp'
-      }
+     
 
       const method = pool.methods[tokenKey]
       try {
         let tokenAddress = ''
         if (method) {
           tokenAddress = await method().call()
-        } else if (tokenKey === 'ycrv_yam_uni_lp') {
-          tokenAddress = '0xdf5e0e81dff6faf3a7e52ba697820c5e32d806a8'
-        }
+        } 
         farmsArr.push({
           contract: pool,
           name: NAME_FOR_POOL[poolKey],
           depositToken: tokenKey,
           depositTokenAddress: tokenAddress,
-          earnToken: 'yam',
+          earnToken: 'sushi',
           earnTokenAddress: yamAddress,
           icon: ICON_FOR_POOL[poolKey],
           id: tokenKey,
